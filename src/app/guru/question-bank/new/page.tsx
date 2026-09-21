@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import GuruLayout from '@/components/guru/GuruLayout';
@@ -26,7 +26,7 @@ import {
 } from 'lucide-react';
 import { QuestionType, DifficultyLevel } from '@/lib/core/types';
 
-export default function GuruQuestionCreatePage() {
+function GuruQuestionCreateContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const preselectedSubject = searchParams?.get('subjectId') || '';
@@ -907,3 +907,12 @@ export default function GuruQuestionCreatePage() {
     </GuruLayout>
   );
 }
+
+export default function GuruQuestionCreatePage() {
+  return (
+    <Suspense fallback={<div className="p-12 text-center text-slate-400">Memuat formulir pembuatan soal...</div>}>
+      <GuruQuestionCreateContent />
+    </Suspense>
+  );
+}
+

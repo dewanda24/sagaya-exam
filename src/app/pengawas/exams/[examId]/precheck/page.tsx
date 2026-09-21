@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect, use, Suspense } from 'react';
 import PengawasLayout from '@/components/pengawas/PengawasLayout';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -26,7 +26,7 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 
-export default function PreExamCheckPage({
+function PreExamCheckContent({
   params,
 }: {
   params: Promise<{ examId: string }>;
@@ -430,3 +430,16 @@ export default function PreExamCheckPage({
     </PengawasLayout>
   );
 }
+
+export default function PreExamCheckPage({
+  params,
+}: {
+  params: Promise<{ examId: string }>;
+}) {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-slate-400 text-xs">Memuat Kesiapan Ruang Ujian...</div>}>
+      <PreExamCheckContent params={params} />
+    </Suspense>
+  );
+}
+

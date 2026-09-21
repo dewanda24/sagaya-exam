@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import GuruLayout from '@/components/guru/GuruLayout';
@@ -33,7 +33,7 @@ import {
 } from 'lucide-react';
 import { QuestionType, DifficultyLevel } from '@/lib/core/types';
 
-export default function GuruQuestionBankPage() {
+function GuruQuestionBankContent() {
   const searchParams = useSearchParams();
   const initialStatus = searchParams?.get('status') || '';
   const initialSubject = searchParams?.get('subjectId') || '';
@@ -790,3 +790,12 @@ export default function GuruQuestionBankPage() {
     </GuruLayout>
   );
 }
+
+export default function GuruQuestionBankPage() {
+  return (
+    <Suspense fallback={<div className="p-12 text-center text-slate-400">Memuat bank soal...</div>}>
+      <GuruQuestionBankContent />
+    </Suspense>
+  );
+}
+
