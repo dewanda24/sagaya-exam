@@ -1,0 +1,176 @@
+/* =========================================================
+   DIGITAL & PRINTABLE EXAM CARD STYLES
+   Format Standar A4 Cetak Massal Kartu Peserta Ujian
+   ========================================================= */
+
+.exam-card-wrapper {
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.exam-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  border-bottom: 2px solid #0f172a;
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.exam-card-school-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1d4ed8;
+}
+
+.exam-card-title-block h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.exam-card-title-block p {
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.exam-card-body-grid {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.student-info-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-info-table td {
+  padding: 0.4rem 0.2rem;
+  font-size: 0.925rem;
+  vertical-align: top;
+}
+
+.student-info-table td.label {
+  width: 130px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.student-info-table td.value {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.exam-card-qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 0.75rem;
+  background: #f8fafc;
+  text-align: center;
+}
+
+.exam-card-qr-box img,
+.exam-card-qr-box canvas {
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.exam-card-qr-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-top: 0.35rem;
+}
+
+/* Schedule Table */
+.exam-schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.exam-schedule-table th,
+.exam-schedule-table td {
+  border: 1px solid #cbd5e1;
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+}
+
+.exam-schedule-table th {
+  background: #f1f5f9;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.token-highlight {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1d4ed8;
+  background: #eff6ff;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #bfdbfe;
+  display: inline-block;
+}
+
+.exam-card-notes {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: #475569;
+  line-height: 1.5;
+  border-left: 3px solid #3b82f6;
+}
+
+/* Mass Print Sheet (A4 - 4 Cards Per Page) */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  body {
+    background: #ffffff !important;
+  }
+
+  .print-grid-a4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 8mm;
+    height: 275mm;
+  }
+
+  .exam-card-wrapper {
+    box-shadow: none !important;
+    border: 1px solid #64748b !important;
+    padding: 10mm;
+    border-radius: 0 !important;
+    page-break-inside: avoid;
+  }
+}
