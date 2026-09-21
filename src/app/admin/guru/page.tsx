@@ -83,13 +83,15 @@ export default function AdminGuruPage() {
       const res = await fetch(url);
       const json = await res.json();
       if (json.success) {
-        setUsers(json.data.users);
+        setUsers(json.data.users || []);
         setSchools(json.data.schools || []);
         setSubjects(json.data.subjects || []);
-        setIsSuperAdmin(json.data.isSuperAdmin);
+        setIsSuperAdmin(json.data.isSuperAdmin ?? false);
         if (!formData.schoolId && json.data.schools?.length > 0) {
           setFormData((prev) => ({ ...prev, schoolId: json.data.schools[0].id }));
         }
+      } else {
+        showNotification(json.error || 'Gagal memuat data pengguna.', 'error');
       }
     } catch (err) {
       console.error(err);
